@@ -12,7 +12,7 @@ import logging
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog, messagebox
-from turtle import __forwardmethods
+import turtle
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageTk, ImageFont
@@ -341,7 +341,7 @@ class ImagePanel(ttk.Frame):
         self._canvas.focus_force()
 
 
-__forwardmethods(ImagePanel, tk.Canvas, "_canvas")
+turtle.__forwardmethods(ImagePanel, tk.Canvas, "_canvas")
 
 
 class StatusBar(ttk.Frame):

@@ -71,7 +71,7 @@ def create_annotations(camera, scene, output_dir,
     time.sleep(5)
 
     # visualize annotations
-    os.system("python cocoviewer.py -i BlenderProc/examples/advanced/coco_annotations/output/coco_data -a BlenderProc/examples/advanced/coco_annotations/output/coco_data/coco_annotations.json")
+    os.system("python cocoviewer.py -i examples/advanced/coco_annotations/output/coco_data -a examples/advanced/coco_annotations/output/coco_data/coco_annotations.json")
 
 
 
@@ -83,14 +83,14 @@ def get_annotations(scene_file, camera_dist, camera_height, camera_samples):
                          camera_dist * math.sin((2 * i * math.pi) / camera_samples), last_position[2], last_position[3],
                          last_position[4], last_position[5] + 2 * math.pi / camera_samples]
         camera_positions.append(next_position)
-    with open('BlenderProc/examples/resources/camera_positions', 'w') as camera_file:
+    with open('examples/resources/camera_positions', 'w') as camera_file:
         for position in camera_positions:
             line = ' '.join(str(e) for e in position)
             camera_file.write(line)
             camera_file.write('\n')
     camera_file.close()
-    cmd = "blenderproc run BlenderProc/examples/advanced/coco_annotations/main.py " \
-          "BlenderProc/examples/resources/camera_positions " + scene_file + " BlenderProc/examples/advanced/coco_annotations/output "
+    cmd = "blenderproc run examples/advanced/coco_annotations/main.py " \
+          "examples/resources/camera_positions " + scene_file + " examples/advanced/coco_annotations/output "
     os.system(cmd)
 
 
@@ -122,12 +122,12 @@ def vis_annotations(initial_position, final_position):
     for position in range(initial_position, final_position):
         os.system(
             "blenderproc vis coco -i " + str(
-                position) + " -c coco_annotations.json -b BlenderProc/examples/advanced/coco_annotations/output/coco_data")
+                position) + " -c coco_annotations.json -b examples/advanced/coco_annotations/output/coco_data")
 
 
 
-#get_annotations("BlenderProc/examples/advanced/coco_annotations/scene.blend", 21, 15, 4)
-get_annotations2("BlenderProc/examples/advanced/coco_annotations/scene.blend", 21, 15, 4,
-                 camera_filename="BlenderProc/examples/resources/camera_positions",
-                 output_dir="BlenderProc/examples/advanced/coco_annotations/output")
+#get_annotations("examples/advanced/coco_annotations/scene.blend", 21, 15, 4)
+get_annotations2("examples/advanced/coco_annotations/scene.blend", 21, 15, 4,
+                 camera_filename="examples/resources/camera_positions",
+                 output_dir="examples/advanced/coco_annotations/output")
                  #object_id = "Suzanne", new_position=[1,2,3], new_rotation=[1,1,0])
