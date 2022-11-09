@@ -89,7 +89,7 @@ def get_annotations(scene_file, camera_dist, camera_height, camera_samples):
             camera_file.write(line)
             camera_file.write('\n')
     camera_file.close()
-    cmd = "blenderproc run examples/advanced/coco_annotations/main.py " \
+    cmd = "blenderproc run /home/fsmatilde/fsmatilde_ext/OceanTest1.blend " \
           "examples/resources/camera_positions " + scene_file + " examples/advanced/coco_annotations/output "
     os.system(cmd)
 
@@ -115,10 +115,6 @@ def get_annotations2(scene_file, camera_dist, camera_height, camera_samples,
 
 
 def vis_annotations(initial_position, final_position):
-    # 1. receber output dir
-    # 2. listar ficheiros na output dir
-    # 3. extrair os números dos nomes das imagens
-    # 4. fazer map da initial/final position para os nomes dos ficheiros existentes
     for position in range(initial_position, final_position):
         os.system(
             "blenderproc vis coco -i " + str(
@@ -126,8 +122,9 @@ def vis_annotations(initial_position, final_position):
 
 
 
-#get_annotations("examples/advanced/coco_annotations/scene.blend", 21, 15, 4)
-get_annotations2("examples/advanced/coco_annotations/scene.blend", 21, 15, 4,
+#get_annotations("examples/advanced/coco_annotations/scene.blend", 1200, 200, 2)
+#vis_annotations(0,1)
+get_annotations2("/home/fsmatilde/fsmatilde_ext/OceanTest1.blend", 1500, 200, 4,
                  camera_filename="examples/resources/camera_positions",
                  output_dir="examples/advanced/coco_annotations/output")
                  #object_id = "Suzanne", new_position=[1,2,3], new_rotation=[1,1,0])

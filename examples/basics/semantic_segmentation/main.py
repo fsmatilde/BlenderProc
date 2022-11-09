@@ -12,6 +12,9 @@ bproc.init()
 
 # load the objects into the scene
 objs = bproc.loader.load_blend(args.scene)
+for obj in objs:
+    category_id = obj.get_name()[0:-2]
+    obj.set_cp("category_id", category_id)
 
 # define a light and set its location and energy level
 light = bproc.types.Light()
